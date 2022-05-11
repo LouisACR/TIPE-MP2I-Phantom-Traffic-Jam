@@ -2,7 +2,7 @@
 var params = {
     fullscreen: true
   };
-  var elem = document.body;
+  var elem = document.getElementById('canvas');
   var two = new Two(params).appendTo(elem);
   
   // Two.js has convenient methods to make shapes and insert them into the scene.
