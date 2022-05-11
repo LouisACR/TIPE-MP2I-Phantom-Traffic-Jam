@@ -7,8 +7,10 @@ var params = {
   
   // Two.js has convenient methods to make shapes and insert them into the scene.
   var radius = 50;
-  var x = two.width * 0.5;
-  var y = two.height * 0.5 - radius * 1.25;
+  var width = two.width;
+  var height = two.height;
+  var x = width * 0.5;
+  var y = height * 0.5 - radius * 1.25;
 
   var voit = two.makeRectangle(x,y,100,100);
 
@@ -16,3 +18,13 @@ var params = {
   
   // Don’t forget to tell two to draw everything to the screen
   two.update();
+
+  two.bind("update", function (frameCount) {
+    var x = voit.translation.x;
+    var y = voit.translation.y;
+    var offsetX = 5;
+    var offsetY = 0;
+    voit.translation = new Two.Vector((x + offsetX)%width,(y + offsetY)%height);
+});
+ 
+two.play();
