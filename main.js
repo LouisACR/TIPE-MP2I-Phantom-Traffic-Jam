@@ -12,7 +12,7 @@ var nbRoad = Math.trunc(height / widthRoad);
 
 function createRoad(){
   for(var i =0 ; i<nbRoad+1 ; i++){
-    var line = two.makeLine(0, i*widthRoad, width, i*widthRoad);
+    two.makeLine(0, i*widthRoad, width, i*widthRoad);
   }
   console.log(nbRoad);
 }
@@ -20,10 +20,10 @@ function createRoad(){
 var voitures = [];
 
 class Voiture {
-  constructor(id, x, y) {
+  constructor(id) {
       this.id = id;
-      this.x = x;
-      this.y = y;
+      this.twoEl;
+      this.position = 0;
   }
   get voitureAhead(){
     if(id==0){
@@ -31,35 +31,56 @@ class Voiture {
     }
     return voitures[id-1];
   }
+  
+  get showX(){
+    return this.position%width;
+  }
+
+  get showY(){
+    return (Math.trunc(this.position/width)%nbRoad)*widthRoad+widthRoad/2;
+  }
+
+  renderVoiture(){
+    this.twoEl.translation = new Two.Vector(this.showX, this.showY);
+  }
+
+  initVoiture(){
+    this.twoEl = two.makeRectangle(this.showX, this.showY, 20, 20);
+  }
 }
 
-<<<<<<< HEAD
-function addVoiture(x ,y){
-  let voiture = new Voiture(x, y);
+// position représente la distance de la voiture depuis le début. (il ne fait que augmenter)
+function addVoiture(position){
+  var id = voitures.length;
+  let voiture = new Voiture(id);
   voitures.push(voiture);
+  voitures[id].initVoiture();
 }
 
-
-=======
 function init(){
+  voitures = [];
+  createRoad();
+  addVoiture(10,10);
+}
+
+function resizeWindow(){
   width = two.width;
   height = two.height;
   nbRoad = Math.trunc(height / widthRoad);
-  createRoad();
 }
->>>>>>> 9934e4fcead18f214f427309d0282df2f024a81f
+
 
 
 // A chaque frame, cette fonction est appelée.
 function onUpdate(frameCount){
 
+  for(var i=0; i<voitures.length; i++){
+    voitures[i].position=voitures[i].position+5;
+    voitures[i].renderVoiture();
 
-
+  }
 }
 
-<<<<<<< HEAD
-document.addEventListener("click", onClick());
-=======
 function onClick(){
 
 
@@ -69,8 +90,7 @@ document.addEventListener("click", onClick);
 
 init();
 
-window.addEventListener('resize', init);
->>>>>>> 9934e4fcead18f214f427309d0282df2f024a81f
+window.addEventListener('resize', resizeWindow);
 
 two.update();
 
