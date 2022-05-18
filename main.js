@@ -40,6 +40,10 @@ class Voiture {
     return (Math.trunc(this.position/width)%nbRoad)*widthRoad+widthRoad/2;
   }
 
+  get two(){
+    return this.twoEl;
+  }
+
   renderVoiture(){
     this.twoEl.translation = new Two.Vector(this.showX, this.showY);
   }
@@ -50,17 +54,18 @@ class Voiture {
 }
 
 // position représente la distance de la voiture depuis le début. (il ne fait que augmenter)
-function addVoiture(position){
+function addVoiture(){
   var id = voitures.length;
   let voiture = new Voiture(id);
   voitures.push(voiture);
   voitures[id].initVoiture();
+  voitures[id].two.fill = random_rgb();
 }
 
 function init(){
   voitures = [];
   createRoad();
-  addVoiture(10,10);
+  addVoiture();
 }
 
 function resizeWindow(){
@@ -69,7 +74,10 @@ function resizeWindow(){
   nbRoad = Math.trunc(height / widthRoad);
 }
 
-
+function random_rgb() {
+  var o = Math.round, r = Math.random, s = 255;
+  return 'rgb(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ')';
+}
 
 // A chaque frame, cette fonction est appelée.
 function onUpdate(frameCount){
@@ -77,12 +85,12 @@ function onUpdate(frameCount){
   for(var i=0; i<voitures.length; i++){
     voitures[i].position=voitures[i].position+5;
     voitures[i].renderVoiture();
-
   }
 }
 
 function onClick(){
 
+  addVoiture();
 
 }
 
