@@ -7,6 +7,15 @@ var two = new Two(params).appendTo(elem);
 
 var width = two.width;
 var height = two.height;
+var widthRoad = 30;
+var nbRoad = Math.trunc(height / widthRoad);
+
+function createRoad(){
+  for(var i =0 ; i<nbRoad+1 ; i++){
+    var line = two.makeLine(0, i*widthRoad, width, i*widthRoad);
+  }
+  console.log(nbRoad);
+}
 
 var voitures = [];
 
@@ -24,12 +33,21 @@ class Voiture {
   }
 }
 
+<<<<<<< HEAD
 function addVoiture(x ,y){
   let voiture = new Voiture(x, y);
   voitures.push(voiture);
 }
 
 
+=======
+function init(){
+  width = two.width;
+  height = two.height;
+  nbRoad = Math.trunc(height / widthRoad);
+  createRoad();
+}
+>>>>>>> 9934e4fcead18f214f427309d0282df2f024a81f
 
 
 // A chaque frame, cette fonction est appelée.
@@ -39,7 +57,20 @@ function onUpdate(frameCount){
 
 }
 
+<<<<<<< HEAD
 document.addEventListener("click", onClick());
+=======
+function onClick(){
+
+
+}
+
+document.addEventListener("click", onClick);
+
+init();
+
+window.addEventListener('resize', init);
+>>>>>>> 9934e4fcead18f214f427309d0282df2f024a81f
 
 two.update();
 
