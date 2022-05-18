@@ -8,9 +8,26 @@ var two = new Two(params).appendTo(elem);
 var width = two.width;
 var height = two.height;
 
+var voitures = [];
 
+class Voiture {
+  constructor(id, x, y) {
+      this.id = id;
+      this.x = x;
+      this.y = y;
+  }
+  get voitureAhead(){
+    if(id==0){
+      return voitures[0];
+    }
+    return voitures[id-1];
+  }
+}
 
-
+function addVoiture(x ,y){
+  let voiture = new Voiture(x, y);
+  voitures.push(voiture);
+}
 
 
 
@@ -18,11 +35,6 @@ var height = two.height;
 // A chaque frame, cette fonction est appelée.
 function onUpdate(frameCount){
 
-
-
-}
-
-function onClick(){
 
 
 }
