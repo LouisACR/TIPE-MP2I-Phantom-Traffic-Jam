@@ -125,11 +125,12 @@ function addVoiture(){
   let voiture = new Voiture(id);
   voitures.push(voiture);
   voitures[id].initVoiture();
-  voitures[id].two.fill = random_rgb();
+  var color = random_rgb();
+  voitures[id].two.fill = color;
   myChart.data.datasets.push({
   label: 'Voiture '+id,
   data: [],
-  borderColor: random_rgb(),
+  borderColor: color,
   fill: false,
   tension: 0.4});
 }
