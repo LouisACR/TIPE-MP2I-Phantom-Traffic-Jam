@@ -37,7 +37,7 @@ const config = {
         display: true,
         title: {
           display: true,
-          text: 'Value'
+          text: 'Vitesse'
         },
         suggestedMin: 0,
         suggestedMax: 20
