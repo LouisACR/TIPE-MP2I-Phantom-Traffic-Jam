@@ -8,4 +8,5 @@ Il s'agit des "Phantom Traffic Jam"
 
 ## Libraries utilisées
 
-[D3.js](https://d3js.org/)
+[Two.js](https://two.js.org/)
+[Chartjs.js](https://www.chartjs.org/)
