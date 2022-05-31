@@ -153,12 +153,12 @@ function random_rgb() {
 }
 
 var k=0;
-
+const delay = 40;
 // A chaque frame, cette fonction est appelée.
 function onUpdate(frameCount){
 
   for(var i=0; i<voitures.length; i++){
-    if(frameCount%30==0){
+    if(frameCount%delay==0){
     voitures[i].randomSpeed();
     myChart.data.labels.push(k);
     k=k+1;
@@ -169,7 +169,7 @@ function onUpdate(frameCount){
     voitures[i].position=voitures[i].position+voitures[i].speed;
     voitures[i].renderVoiture();
   }
-  if(frameCount%30==0){
+  if(frameCount%delay==0){
     myChart.update();
   }
 
