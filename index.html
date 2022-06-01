@@ -1,31 +1,81 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>TIPE Clément et Louis</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="bootstrap.min.css">
-</head>
-<body>
-    <div class="container">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="bootstrap.min.css" />
+  </head>
+  <body>
     <div class="row">
-    <div class="col col-lg-12" id="canvas"></div>
-    <div class="col col-lg-6">
-    <div class="chart-container" style="height:40vh; width:60vw">
-    <canvas id="myChart"></canvas>
+      <div class="col col-12 col-lg-12" id="canvas"></div>
+      <div class="col col-12 col-lg-6">
+        <div class="chart-container">
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
+      <div class="col col-12 col-lg-6">
+        <div class="container">
+          <div class="mb-3">
+            <a
+              href="#"
+              id="addVoiture"
+              onclick="addVoiture()"
+              class="btn btn-success"
+              >Ajouter voiture</a
+            >
+            <a
+              href="#"
+              id="freiner"
+              onmouseup="arreteFreiner()"
+              onmousedown="freiner()"
+              class="btn btn-danger"
+              >Freiner</a
+            >
+            <a
+              href="index.html"
+              class="btn btn-warning"
+              >Relancer</a
+            >
+          </div>
+          <div class="mb-3">
+            <label for="DA" class="form-label"
+              >Distance entre voiture avant freinage</label
+            >
+            <input
+              type="range"
+              class="form-range"
+              value="100"
+              min="0"
+              max="1000"
+              step="10"
+              id="DA"
+              onchange="daSlider()"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="DV" class="form-label"
+              >Vitesse visée</label
+            >
+            <input
+              type="range"
+              class="form-range"
+              value="50"
+              min="1"
+              max="200"
+              step="1"
+              id="DV"
+              onchange="dvSlider()"
+            />
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
-    <div class="col col-lg-6">
-    <a href="#" id="addVoiture" onclick="addVoiture()" class="btn btn-success">Ajouter voiture</a>
-    <a href="#" id="freiner" onmouseup="arreteFreiner()" onmousedown="freiner()" class="btn btn-danger">Freiner</a>
-    </div>
-    </div>
-</div>
-</body>
-<script src="bootstrap.bundle.min.js"></script>
-<script src="two.js"></script>
-<script src="chart.min.js"></script>
-<script src="main.js"></script>
+  </body>
+  <script src="bootstrap.bundle.min.js"></script>
+  <script src="two.js"></script>
+  <script src="chart.min.js"></script>
+  <script src="main.js"></script>
 </html>

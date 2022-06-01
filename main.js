@@ -1,28 +1,29 @@
 // Make an instance of two and place it on the page.
 var params = {
   width: window.innerWidth,
-  height: window.innerHeight/2
+  height: window.innerHeight/3
 };
 var elem = document.getElementById('canvas');
 var two = new Two(params).appendTo(elem);
 
+const VSM = 10;
 const SLICE = 20;
-const DA = 150;
-const DefaultSpeed = 5;
+var DA = 100;
+var DefaultSpeed = 5;
 
-var freiner = false;
+var frein = false;
 
 var labels = [];
 var datapoints =  [];
 for(var i=0;i<SLICE;i++){
   labels.push(i);
-  datapoints.push(DefaultSpeed);
+  datapoints.push(DefaultSpeed*VSM);
 }
 var data = {
   labels: labels,
   datasets: [
     {
-      label: 'vitesse visé',
+      label: 'vitesse visée',
       data: datapoints,
       borderColor: 'rgb(0,0,0)',
       fill: false,
@@ -47,9 +48,9 @@ const config = {
     },
     scales: {
       x: {
-        display: true,
+        display: false,
         title: {
-          display: true
+          display: false
         }
       },
       y: {
@@ -58,8 +59,8 @@ const config = {
           display: true,
           text: 'Vitesse'
         },
-        suggestedMin: DefaultSpeed*3/4,
-        suggestedMax: DefaultSpeed*5/4
+        suggestedMin: (DefaultSpeed*3/4)*VSM,
+        suggestedMax: (DefaultSpeed*5/4)*VSM
       }
     }
   },
@@ -89,6 +90,15 @@ function createRoad(){
   }
 }
 
+
+function round(value, decimals) {
+  return Number(Math.round(value +'e'+ decimals) +'e-'+ decimals).toFixed(decimals);
+}
+
+function neglieagable(value){
+  return value;
+}
+
 var voitures = [];
 
 class Voiture {
@@ -97,6 +107,7 @@ class Voiture {
       this.twoEl;
       this.position = 0;
       this.speed = 0;
+      this.freine = false;
   }
   get voitureAhead(){
     if(this.id==0){
@@ -112,10 +123,16 @@ class Voiture {
   randomSpeed(){
     var newspeed = this.speed + getRandomInt(2)/10;
     if(newspeed > (DefaultSpeed + 1)){
-      newspeed = (DefaultSpeed + 1);
+      newspeed = newspeed - 0.5;
     }
     if(newspeed <= (DefaultSpeed - 1)){
-      newspeed = (DefaultSpeed - 1);
+      newspeed = newspeed + 0.5;;
+    }
+    if(this.id==0&&frein){
+      newspeed = this.speed;
+    }
+    if(this.freine){
+      newspeed = this.speed;
     }
     this.speed = newspeed;
   }
@@ -148,14 +165,26 @@ class Voiture {
     if(this.distanceAhead<=0){
       this.speed = 0; // collision
     } else if(this.distanceAhead < DA){
-      this.speed = this.speed - (1/this.distanceAhead)*2;
+      this.speed = this.speed - neglieagable(10/this.distanceAhead);
+      this.freine = true;
     } else if(this.speed < DefaultSpeed){
       this.speed = this.speed + 0.02;
+    } else {
+      this.freine = false;
     }
+    } else {
+      if(frein){
+        if(this.speed <= 0){
+          this.speed = 0;
+        } else {
+        this.speed = this.speed - 0.02;
+        }
+      }
     }
   }
 
 }
+
 
 // position représente la distance de la voiture depuis le début. (il ne fait que augmenter)
 function addVoiture(){
@@ -195,6 +224,8 @@ function random_rgb() {
 
 var k=0;
 const delay = 40;
+
+
 // A chaque frame, cette fonction est appelée.
 function onUpdate(frameCount){
 
@@ -218,17 +249,32 @@ function updateVoitureChart(i){
   myChart.data.labels.push(k);
   }
   k=k+1;
-  myChart.data.datasets[i+1].data.push(voitures[i].speed);
+  myChart.data.datasets[i+1].data.push(voitures[i].speed*VSM);
   myChart.data.labels = myChart.data.labels.slice(-SLICE);
   myChart.data.datasets[i+1].data = myChart.data.datasets[i+1].data.slice(-SLICE);
 }
 
-function freiner(){
+function daSlider(){
+  DA = document.getElementById('DA').value;
+}
 
+function dvSlider(){
+  DefaultSpeed = (document.getElementById('DV').value)/10;
+  myChart.options.scales.y.suggestedMax = (DefaultSpeed*5/4)*VSM;
+  myChart.options.scales.y.suggestedMin = (DefaultSpeed*3/4)*VSM;
+  datapoints = [];
+  for(var i=0;i<SLICE;i++){
+    datapoints.push(DefaultSpeed*VSM);
+  }
+  myChart.data.datasets[0].data = datapoints;
+}
+
+function freiner(){
+  frein = true;
 }
 
 function arreteFreiner(){
-
+  frein = false;
 }
 
 init();
