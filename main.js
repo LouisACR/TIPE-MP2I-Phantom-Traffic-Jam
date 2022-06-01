@@ -10,6 +10,8 @@ const SLICE = 20;
 const DA = 150;
 const DefaultSpeed = 5;
 
+var freiner = false;
+
 var labels = [];
 var datapoints =  [];
 for(var i=0;i<SLICE;i++){
@@ -226,7 +228,7 @@ function freiner(){
 }
 
 function arreteFreiner(){
-  
+
 }
 
 init();
