@@ -6,10 +6,27 @@ var params = {
 var elem = document.getElementById('canvas');
 var two = new Two(params).appendTo(elem);
 
+const SLICE = 20;
+const DA = 150;
+const DefaultSpeed = 5;
+
 var labels = [];
 var datapoints =  [];
+for(var i=0;i<SLICE;i++){
+  labels.push(i);
+  datapoints.push(DefaultSpeed);
+}
 var data = {
-  labels: labels
+  labels: labels,
+  datasets: [
+    {
+      label: 'vitesse visé',
+      data: datapoints,
+      borderColor: random_rgb(),
+      fill: false,
+      tension: 0.4
+    }
+  ]
 };
 
 const config = {
@@ -39,8 +56,8 @@ const config = {
           display: true,
           text: 'Vitesse'
         },
-        suggestedMin: 0,
-        suggestedMax: 20
+        suggestedMin: DefaultSpeed*3/4,
+        suggestedMax: DefaultSpeed*5/4
       }
     }
   },
@@ -73,27 +90,30 @@ function createRoad(){
 var voitures = [];
 
 class Voiture {
-  constructor(id) {
-      this.id = id;
+  constructor(ide) {
+      this.id = ide;
       this.twoEl;
       this.position = 0;
-      this.speed = 5;
+      this.speed = 0;
   }
   get voitureAhead(){
-    if(id==0){
+    if(this.id==0){
       return voitures[0];
     }
-    return voitures[id-1];
+    return voitures[this.id-1];
   }
   
   get distanceAhead(){
-    return (this.voitureAhead().position - this.position);
+    return (this.voitureAhead.position - this.position) - 20;
   }
 
   randomSpeed(){
-    var newspeed = Math.floor(this.speed + getRandomInt(2));
-    if(newspeed<1){
-      newspeed = 1;
+    var newspeed = this.speed + getRandomInt(2)/10;
+    if(newspeed > (DefaultSpeed + 1)){
+      newspeed = (DefaultSpeed + 1);
+    }
+    if(newspeed <= (DefaultSpeed - 1)){
+      newspeed = (DefaultSpeed - 1);
     }
     this.speed = newspeed;
   }
@@ -117,12 +137,31 @@ class Voiture {
   initVoiture(){
     this.twoEl = two.makeRectangle(this.showX, this.showY, 20, 20);
   }
+
+  updateCarSpeed(){
+    if(this.id!=0){
+    if(this.speed < 0){
+        this.speed = 0;
+    }
+    if(this.distanceAhead<=0){
+      this.speed = 0; // collision
+    } else if(this.distanceAhead < DA){
+      this.speed = this.speed - (1/this.distanceAhead)*2;
+    } else if(this.speed < DefaultSpeed){
+      this.speed = this.speed + 0.02;
+    }
+    }
+  }
+
 }
 
 // position représente la distance de la voiture depuis le début. (il ne fait que augmenter)
 function addVoiture(){
   var id = voitures.length;
   let voiture = new Voiture(id);
+  if(id==0){
+    voiture.speed = DefaultSpeed;
+  }
   voitures.push(voiture);
   voitures[id].initVoiture();
   var color = random_rgb();
@@ -159,13 +198,9 @@ function onUpdate(frameCount){
 
   for(var i=0; i<voitures.length; i++){
     if(frameCount%delay==0){
-    voitures[i].randomSpeed();
-    myChart.data.labels.push(k);
-    k=k+1;
-    myChart.data.datasets[i].data.push(voitures[i].speed);
-    myChart.data.labels = myChart.data.labels.slice(-30);
-    myChart.data.datasets[i].data = myChart.data.datasets[i].data.slice(-30);
+      updateVoitureChart(i);
     }
+    voitures[i].updateCarSpeed();
     voitures[i].position=voitures[i].position+voitures[i].speed;
     voitures[i].renderVoiture();
   }
@@ -173,6 +208,17 @@ function onUpdate(frameCount){
     myChart.update();
   }
 
+}
+
+function updateVoitureChart(i){
+  voitures[i].randomSpeed();
+  if(k>20){
+  myChart.data.labels.push(k);
+  }
+  k=k+1;
+  myChart.data.datasets[i+1].data.push(voitures[i].speed);
+  myChart.data.labels = myChart.data.labels.slice(-SLICE);
+  myChart.data.datasets[i+1].data = myChart.data.datasets[i+1].data.slice(-SLICE);
 }
 
 function onClick(){
