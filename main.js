@@ -22,7 +22,7 @@ var data = {
     {
       label: 'vitesse visé',
       data: datapoints,
-      borderColor: random_rgb(),
+      borderColor: 'rgb(0,0,0)',
       fill: false,
       tension: 0.4
     }
@@ -219,6 +219,14 @@ function updateVoitureChart(i){
   myChart.data.datasets[i+1].data.push(voitures[i].speed);
   myChart.data.labels = myChart.data.labels.slice(-SLICE);
   myChart.data.datasets[i+1].data = myChart.data.datasets[i+1].data.slice(-SLICE);
+}
+
+function freiner(){
+
+}
+
+function arreteFreiner(){
+  
 }
 
 init();
