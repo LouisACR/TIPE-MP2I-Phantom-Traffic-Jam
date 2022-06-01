@@ -140,7 +140,7 @@ class Voiture {
 
   updateCarSpeed(){
     if(this.id!=0){
-    if(this.speed < 0){
+    if(this.speed <= 0){
         this.speed = 0;
     }
     if(this.distanceAhead<=0){
@@ -220,14 +220,6 @@ function updateVoitureChart(i){
   myChart.data.labels = myChart.data.labels.slice(-SLICE);
   myChart.data.datasets[i+1].data = myChart.data.datasets[i+1].data.slice(-SLICE);
 }
-
-function onClick(){
-
-  addVoiture();
-
-}
-
-document.addEventListener("click", onClick);
 
 init();
 
