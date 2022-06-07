@@ -31,7 +31,7 @@ Si nous observons la voie depuis plusieurs dizaines de mètres de hauteur, nous 
 | Trafic discontinu | Stop-and-go traffic |
 | Modélisation de Aw-Rascle-Zhang | Aw-Rascle-Zhang model |
 
-### Pourquoi avoir choisit ce sujet ?
+### Pourquoi avoir choisi ce sujet ?
 
 Ce sujet nous inspire puisqu'il traite d'un phénonème courant mais très peu connu et auquel des solutions simples peuvent être mises en place par les usagers de la route. Ce sujet nous permet également d'étudier des simulations sur la propagation des ondes de ralentissement et la faisabilité des solutions pour prévenir ce phénomème sur les automobilistes.
 
@@ -51,8 +51,12 @@ Au regard de l'importance d'une infrastructure routière fluide, quelle peut êt
 
 Phantom Traffic Jams take place too often in our lives. This phenomenon is mainly caused by the human factor. In stop-and-go traffic, drivers are not machines and can not react instantly to variable speeds. This results in a backwards wave in highly densed traffic that tends to reduce the flow.
 
+### Liens
+
+* **Dépôt des versions en ligne:** https://github.com/LouisACR/TIPE-MP2I-Phantom-Traffic-Jam
+
 ### Références bibliographiques
 
-**[1]** **TAL COHEN and ROHAN ABEYARATNE** : “Linearized Theory of Traffic Flow“ : *Departement of Mechanical Engineering - Massachusetts Institute of Technology*
+**[1]** **TAL COHEN and ROHAN ABEYARATNE** : “Linearized Theory of Traffic Flow“ : *Departement of Mechanical Engineering - Massachusetts Institute of Technology - arXiv:1412.7371v1 [physics.soc-ph] 20 Dec 2014*
 
 **[2]** **Flynn, M. R. et al.** “Self-sustained nonlinear waves in traffic flow.” : *Physical Review E 79.5 (2009): 056113. © 2009 The AmericanPhysical Society.*
