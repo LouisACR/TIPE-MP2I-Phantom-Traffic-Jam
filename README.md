@@ -4,7 +4,7 @@ Voici notre TIPE pour notre première année de MP2I sur le phénomène de "Phan
 
 Il s'agit d'un travail de groupe avec Clément Prévot et Louis ROMAIN.
 
-Il s'agit des "Phantom Traffic Jam"
+Veuillez lire notre MCOT pour ce TIPE : [Cliquez ici](https://github.com/LouisACR/TIPE-MP2I-Phantom-Traffic-Jam/blob/main/MCOT.md)
 
 ## Libraries utilisées
 
