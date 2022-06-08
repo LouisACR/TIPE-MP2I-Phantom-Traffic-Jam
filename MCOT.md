@@ -62,9 +62,9 @@ Dans un traffic dense nous allons étudier plusieurs scénarios :
 On peut faire un // avec le phénomène et un système masse ressort (théorie mathématique de l'élastisité des corps).
 On peut faire un // avec le phénomène et la mecaniqeue des fluides (le systèmes euleriens) ou la mecanique des solide (systèmes lagrangiens).
 
-euler : $v(y,t)$ $\rho(y,t)$ (y : position du vehicule)
+euler : $v(y,t)$ $\rho(y,t)$ ($y$ : position du vehicule a un temps $t$)
 
-lagrange : $\lambda(x,t)$ $v(x,t)$ (x : position du vehicule)
+lagrange : $\lambda(x,t)$ $v(x,t)$ ($x$ : position du vehicule dans le groupe de vehicule)
 
 on peut passer d'un modele à l'autre en utilisant ecrivant $y(x,t)$
 
