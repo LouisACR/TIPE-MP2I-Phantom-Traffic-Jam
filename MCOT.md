@@ -47,6 +47,29 @@ Ce sujet nous inspire puisqu'il traite d'un phénonème courant mais très peu c
 
 Au regard de l'importance d'une infrastructure routière fluide, quelle peut être les solutions mises en place afin de contrer l'effet d'embouteillage automobile fantôme ?
 
+### Bibliographie commentée 
+
+Les phenomenes de perturbation du traffic ne sont pas linéaires car les variations de vitesses ne sont pas forcement voulues et se basent sur des probabilités d'apparition. 
+
+Dans un traffic dense nous allons étudier plusieurs scénarios : 
+
+1. La premiere voiture change de vitesse de façon continue (pas d'acceleration brusque). 
+
+2. La première voiture change de vitesse de façon discontinue. 
+
+3. Une voiture quelquonque (qui n'est pas la première) change brusquement de vitesse. 
+
+On peut faire un // avec le phénomène et un système masse ressort (théorie mathématique de l'élastisité des corps).
+On peut faire un // avec le phénomène et la mecaniqeue des fluides (le systèmes euleriens) ou la mecanique des solide (systèmes lagrangiens).
+
+euler : $v(y,t)$ $\rho(y,t)$ (y : position du vehicule)
+
+lagrange : $\lambda(x,t)$ $v(x,t)$ (x : position du vehicule)
+
+on peut passer d'un modele à l'autre en utilisant ecrivant $y(x,t)$
+
+
+
 ### Abstract
 
 Phantom Traffic Jams take place too often in our lives. This phenomenon is mainly caused by the human factor. In stop-and-go traffic, drivers are not machines and can not react instantly to variable speeds. This results in a backwards wave in highly densed traffic that tends to reduce the flow.
