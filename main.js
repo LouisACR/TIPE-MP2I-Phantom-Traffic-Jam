@@ -8,7 +8,7 @@ var two = new Two(params).appendTo(elem);
 
 const VSM = 10;
 const SLICE = 20;
-var DA = 100;
+var DA = 100; // distance d'arret 
 var DefaultSpeed = 5;
 
 var frein = false;
@@ -32,7 +32,7 @@ var data = {
   ]
 };
 
-const config = {
+const config = { //graphe vitesse 
   type: 'line',
   data: data,
   options: {
@@ -71,9 +71,9 @@ var myChart = new Chart(
   config
 );
 
-var width = two.width;
-var height = two.height;
-var widthRoad = 30;
+var width = two.width; // taille ecran 
+var height = two.height;// taille ecran 
+var widthRoad = 30; // taille des routes
 var nbRoad = Math.trunc(height / widthRoad);
 
 function getRandomInt(max) {
@@ -254,7 +254,7 @@ function updateVoitureChart(i){
   myChart.data.datasets[i+1].data = myChart.data.datasets[i+1].data.slice(-SLICE);
 }
 
-function daSlider(){
+function daSlider(){ // slider distance d'arrêt
   DA = document.getElementById('DA').value;
 }
 

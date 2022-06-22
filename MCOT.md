@@ -1,6 +1,6 @@
 ---
 "lang": "fr",
-"title": "Etude du phénonème d'embouteillage automobile fantôme (Phantom Traffic Jam)",
+"title": "Etude du phénomème d'embouteillage automobile fantôme (Phantom Traffic Jam)",
 "subtitle": "Quels sont les impacts de ce phénomène ?",
 "authors": ["Louis ROMAIN"," Clément PREVOT"],
 "date": "Juin 2022"
@@ -62,6 +62,11 @@ Il y a différentes façons de voir ce phénomène de perturbation, nous nous in
 Nous avons deux fonctions très utiles pour l'étude de ce phénomène, dans deux systèmes différents.
 
 La spécification eulérienne : la vitesse $v(y,t)$ et la densité $\rho(y,t)$ avec $y$ la position du véhicule et $t$ un temps
+euler : $v(y,t)$ $\rho(y,t)$ ($y$ : position du vehicule a un temps $t$)
+
+lagrange : $\lambda(x,t)$ $v(x,t)$ ($x$ : position du vehicule dans le groupe de vehicule)
+
+on peut passer d'un modele à l'autre en utilisant ecrivant $y(x,t)$
 
 La spécification lagrangienne : la distance entre deux voitures: $\lambda(x,t)$ **[1]** et la vitesse $v(x,t)$ avec $x$ un unique entier non dimensionné représentant une voiture et $t$ un temps. Nous pouvons passer d'une spécification à l'autre en utilisant : $y(x,t)$ **[1],[2]**
 
